@@ -20,6 +20,12 @@ import config from './config';
         API_KEY: Joi.number().required(),
         DATABASE_NAME: Joi.string().required(),
         DATABASE_PORT: Joi.number().required(),
+
+        POSTGRES_DB: Joi.string().required(),
+        POSTGRES_DB_USER: Joi.string().required(),
+        POSTGRES_DB_PASSWORD: Joi.string().required(),
+        POSTGRES_DB_PORT: Joi.number().required(),
+        POSTGRES_DB_HOST: Joi.string().required(),
       }),
     }),
   ],
