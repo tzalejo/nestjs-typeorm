@@ -1,0 +1,31 @@
+version: '3.3'
+networks:
+  nestjsnetwork:
+services: 
+  postgres-nestjs:
+    image: postgres:13
+    container_name: postgres-nestjs 
+    environment:
+      - POSTGRES_DB=nestjs_typeorm
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=nestjs
+    ports:
+      - '54321:5432' # 👈🏻Acá le decimos que dentro del contenedor el puerto que usará es el 5432 y 
+        # para que nosotros usemos fuera del contenedor le decimo que exponga el puerto 54321
+    volumes:
+      - './postgres_data:/var/lib/postgresql/data'
+    networks:
+      - nestjsnetwork
+
+  pgadmin: ##👈 add pgadmin
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+     - PGADMIN_DEFAULT_EMAIL=root@admin.com
+     - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "5050:80"
+    networks:
+      - nestjsnetwork
+
+

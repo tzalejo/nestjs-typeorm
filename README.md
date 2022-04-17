@@ -79,3 +79,10 @@ heroku local web
 git push heroku master
 heroku config:set APP_KEY=12345
 ```
+## Docker - Comandos utiles
+```bash
+dc logs postgres-nestjs 
+dc exec postgres-nestjs bash
+psql -h localhost -d nestjs_typeorm -U root
+
+```
