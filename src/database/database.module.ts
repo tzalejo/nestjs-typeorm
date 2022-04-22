@@ -21,6 +21,8 @@ const API_KEY = '123456';
           username: configService.postgres.dbUser,
           password: configService.postgres.dbPass,
           database: configService.postgres.dbName,
+          synchronize: true,
+          autoLoadEntities: true,
         } as ConnectionOptions;
       },
     }),

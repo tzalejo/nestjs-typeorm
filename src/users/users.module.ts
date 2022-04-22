@@ -13,7 +13,7 @@ import { ProductsModule } from '../products/products.module';
 import { Order } from './entities/order.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProductsModule, Customer, User, Order])],
+  imports: [ProductsModule, TypeOrmModule.forFeature([Customer, User, Order])],
   controllers: [CustomersController, UsersController],
   providers: [CustomersService, UsersService],
 })
