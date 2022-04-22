@@ -12,6 +12,7 @@ export default registerAs('config', () => {
       dbUser: process.env.POSTGRES_DB_USER,
       dbPass: process.env.POSTGRES_DB_PASSWORD,
       dbPort: process.env.POSTGRES_DB_PORT,
+      dbType: process.env.POSTGRES_DB_TYPE,
     },
     apiKey: process.env.API_KEY,
   };
