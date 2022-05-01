@@ -7,7 +7,9 @@ import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
 
 @Injectable()
 export class ProductsService {
-  constructor(@InjectRepository(Product) private productRepository: Repository<Product>,) {}
+  constructor(
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+  ) {}
 
   findAll() {
     return this.productRepository.find();

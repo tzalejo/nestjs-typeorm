@@ -11,7 +11,11 @@ import { enviroments } from './enviroments';
 import config from './config';
 
 @Module({
-  imports: [UsersModule, ProductsModule, HttpModule, DatabaseModule,
+  imports: [
+    UsersModule,
+    ProductsModule,
+    HttpModule,
+    DatabaseModule,
     ConfigModule.forRoot({
       envFilePath: enviroments[process.env.NODE_ENV] || '.env',
       load: [config],
