@@ -15,12 +15,12 @@ const API_KEY = '123456';
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => {
         return {
-          type: configService.postgres.dbType,
-          host: configService.postgres.dbHost,
-          port: configService.postgres.dbPort,
-          username: configService.postgres.dbUser,
-          password: configService.postgres.dbPass,
-          database: configService.postgres.dbName,
+          type: configService.mysql.dbType,
+          host: configService.mysql.dbHost,
+          port: configService.mysql.dbPort,
+          username: configService.mysql.dbUser,
+          password: configService.mysql.dbPass,
+          database: configService.mysql.dbName,
           synchronize: true,
           autoLoadEntities: true,
         } as ConnectionOptions;
@@ -41,7 +41,7 @@ const API_KEY = '123456';
           host: configService.postgres.dbHost,
           database: configService.postgres.dbName,
           password: configService.postgres.dbPass,
-          port: parseInt(configService.postgres.dbPort),
+          port: configService.postgres.dbPort,
         });
         client.connect();
         return client;

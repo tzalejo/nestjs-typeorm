@@ -1,16 +1,16 @@
 version: '3.3'
 networks:
   nestjsnetwork:
-services: 
+services:
   postgres-nestjs:
     image: postgres:13
-    container_name: postgres-nestjs 
+    container_name: postgres-nestjs
     environment:
       - POSTGRES_DB=nestjs_typeorm
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=nestjs
     ports:
-      - '54321:5432' # 👈🏻Acá le decimos que dentro del contenedor el puerto que usará es el 5432 y 
+      - '54321:5432' # 👈🏻Acá le decimos que dentro del contenedor el puerto que usará es el 5432 y
         # para que nosotros usemos fuera del contenedor le decimo que exponga el puerto 54321
     volumes:
       - './postgres_data:/var/lib/postgresql/data'
@@ -27,5 +27,30 @@ services:
       - "5050:80"
     networks:
       - nestjsnetwork
+    depends_on:
+      - postgres-nestjs
+
+  mysql-nestjs:
+    image: mysql:5
+    container_name: mysql-nestjs
+    environment:
+       MYSQL_DATABASE: mysql-nestjs
+       MYSQL_USER: root
+       MYSQL_PASSWORD: nestjs
+       MYSQL_ROOT_PASSWORD: nestjs
+    ports:
+      - '33088:3306'
+    volumes:
+      - './mysql_data:/var/lib/mysql'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=nestjs
+      - PMA_HOST=mysql-nestjs
+    ports:
+      - '8085:80'
+    depends_on:
+      - mysql-nestjs
 
 
