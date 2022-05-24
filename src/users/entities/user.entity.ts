@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Customer } from './customer.entity';
 
 @Entity()
 export class User {
@@ -29,4 +32,8 @@ export class User {
     type: 'timestamp',
   })
   updateAt: Date;
+
+  @OneToOne(() => Customer, (customer) => customer.user)
+  @JoinColumn() // esto tiene que estar en un solo lado de la relacion(relacion uno a uno)
+  customer: Customer;
 }
