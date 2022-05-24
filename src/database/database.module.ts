@@ -21,7 +21,7 @@ const API_KEY = '123456';
           username: configService.mysql.dbUser,
           password: configService.mysql.dbPass,
           database: configService.mysql.dbName,
-          synchronize: true,
+          synchronize: false,
           autoLoadEntities: true,
         } as ConnectionOptions;
       },
