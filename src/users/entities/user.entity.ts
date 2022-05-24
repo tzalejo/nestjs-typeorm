@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -13,4 +19,14 @@ export class User {
 
   @Column({ type: 'varchar', length: 255 })
   role: string;
+
+  @CreateDateColumn({
+    type: 'timestamp',
+  })
+  createAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+  })
+  updateAt: Date;
 }
