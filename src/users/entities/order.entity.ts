@@ -1,7 +1,13 @@
 // src/users/entities/order.entity.ts
-import { User } from './user.entity';
-import { Product } from './../../products/entities/product.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+
+import { Customer } from './customer.entity';
 
 // 👈 new entity
 @Entity()
@@ -9,11 +15,16 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'date' })
-  date: Date;
+  @CreateDateColumn({
+    type: 'timestamp',
+  })
+  createAt: Date;
 
-  user: User;
+  @UpdateDateColumn({
+    type: 'timestamp',
+  })
+  updateAt: Date;
 
-  @OneToMany((type) => Product, (product) => product.id)
-  products: Product[];
+  @ManyToOne(() => Customer, (customer) => customer.orders)
+  customer: Customer;
 }
