@@ -62,7 +62,27 @@ export class ProductsService {
 
   async remove(id: number) {
     const productDelete = await this.productRepository.findOne(id);
-    console.log(productDelete);
     return this.productRepository.delete(productDelete['id']);
+  }
+
+  async removeCategoryByProduct(productId: number, categoryId: number) {
+    const product = await this.productRepository.findOne(productId, {
+      relations: ['categories'],
+    });
+    product.categories = product.categories.filter(
+      (item) => item.id !== categoryId,
+    );
+    return this.productRepository.save(product);
+  }
+
+  async addCategoryToProduct(productId: number, categoryId: number) {
+    const product = await this.productRepository.findOne(productId, {
+      relations: ['categories'],
+    });
+
+    const category = await this.categoryRepository.findOne(categoryId);
+    product.categories.push(category);
+
+    return this.productRepository.save(product);
   }
 }
