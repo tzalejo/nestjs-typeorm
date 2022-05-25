@@ -1,13 +1,14 @@
-// src/users/entities/order.entity.ts
 import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { Customer } from './customer.entity';
+import { OrderProduct } from './order-product.entity';
 
 // 👈 new entity
 @Entity()
@@ -27,4 +28,7 @@ export class Order {
 
   @ManyToOne(() => Customer, (customer) => customer.orders)
   customer: Customer;
+
+  @OneToMany(() => OrderProduct, (product) => product.order)
+  products: OrderProduct[];
 }
