@@ -14,7 +14,7 @@ import config from './config';
   imports: [
     UsersModule,
     ProductsModule,
-    HttpModule,
+    // HttpModule,
     DatabaseModule,
     ConfigModule.forRoot({
       envFilePath: enviroments[process.env.NODE_ENV] || '.env',
@@ -25,18 +25,18 @@ import config from './config';
         DATABASE_NAME: Joi.string().required(),
         DATABASE_PORT: Joi.number().required(),
 
-        POSTGRES_DB: Joi.string().required(),
+        /* POSTGRES_DB: Joi.string().required(),
         POSTGRES_DB_USER: Joi.string().required(),
         POSTGRES_DB_PASSWORD: Joi.string().required(),
         POSTGRES_DB_PORT: Joi.number().required(),
-        POSTGRES_DB_HOST: Joi.string().required(),
+        POSTGRES_DB_HOST: Joi.string().required(), */
       }),
     }),
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    {
+    /* {
       provide: 'TASKS',
       useFactory: async (http: HttpService) => {
         const tasks = await http
@@ -45,7 +45,7 @@ import config from './config';
         return tasks.data;
       },
       inject: [HttpService],
-    },
+    }, */
   ],
 })
 export class AppModule {}
