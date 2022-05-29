@@ -36,8 +36,8 @@ services:
     command: --init-file /data/application/init.sql
     environment:
        MYSQL_DATABASE: nestjs
-       MYSQL_USER: root
-       MYSQL_PASSWORD: nestjs
+       # MYSQL_USER: root
+       # MYSQL_PASSWORD: nestjs
        MYSQL_ROOT_PASSWORD: nestjs
     ports:
       - '33088:3306'
