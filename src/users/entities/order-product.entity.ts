@@ -1,4 +1,4 @@
-import {Product} from 'src/products/entities/product.entity';
+import { Product } from 'src/products/entities/product.entity';
 import {
   Column,
   CreateDateColumn,
@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import {Order} from './order.entity';
+import { Order } from './order.entity';
 
 // 👈 new entity
 @Entity()
@@ -15,7 +15,7 @@ export class OrderProduct {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({type: 'int'})
+  @Column({ type: 'int' })
   quantity: number;
 
   @CreateDateColumn({
