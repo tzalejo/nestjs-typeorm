@@ -1,40 +1,41 @@
 version: '3.3'
-networks:
-  nestjsnetwork:
+# networks:
+#   nestjsnetwork:
 services:
-  postgres-nestjs:
-    image: postgres:13
-    container_name: postgres-nestjs
-    environment:
-      - POSTGRES_DB=nestjs_typeorm
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=nestjs
-    ports:
-      - '54321:5432' # 👈🏻Acá le decimos que dentro del contenedor el puerto que usará es el 5432 y
-        # para que nosotros usemos fuera del contenedor le decimo que exponga el puerto 54321
-    volumes:
-      - './postgres_data:/var/lib/postgresql/data'
-    networks:
-      - nestjsnetwork
+  # postgres-nestjs:
+  #   image: postgres:13
+  #   container_name: postgres-nestjs
+  #   environment:
+  #     - POSTGRES_DB=nestjs_typeorm
+  #     - POSTGRES_USER=root
+  #     - POSTGRES_PASSWORD=nestjs
+  #   ports:
+  #     - '54321:5432' # 👈🏻Acá le decimos que dentro del contenedor el puerto que usará es el 5432 y
+  #       # para que nosotros usemos fuera del contenedor le decimo que exponga el puerto 54321
+  #   volumes:
+  #     - './postgres_data:/var/lib/postgresql/data'
+  #   networks:
+  #     - nestjsnetwork
 
-  pgadmin: ##👈 add pgadmin
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-     - PGADMIN_DEFAULT_EMAIL=root@admin.com
-     - PGADMIN_DEFAULT_PASSWORD=root
-    ports:
-      - "5050:80"
-    networks:
-      - nestjsnetwork
-    depends_on:
-      - postgres-nestjs
+  # pgadmin: ##👈 add pgadmin
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin
+  #   environment:
+  #    - PGADMIN_DEFAULT_EMAIL=root@admin.com
+  #    - PGADMIN_DEFAULT_PASSWORD=root
+  #   ports:
+  #     - "5050:80"
+  #   networks:
+  #     - nestjsnetwork
+  #   depends_on:
+  #     - postgres-nestjs
 
   mysql-nestjs:
-    image: mysql:5
+    image: mysql:8.0
     container_name: mysql-nestjs
+    command: --init-file /data/application/init.sql
     environment:
-       MYSQL_DATABASE: mysql-nestjs
+       MYSQL_DATABASE: nestjs
        MYSQL_USER: root
        MYSQL_PASSWORD: nestjs
        MYSQL_ROOT_PASSWORD: nestjs
@@ -42,12 +43,12 @@ services:
       - '33088:3306'
     volumes:
       - './mysql_data:/var/lib/mysql'
-
+      - './db/init.sql:/data/application/init.sql'
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
       - MYSQL_ROOT_PASSWORD=nestjs
-      - PMA_HOST=mysql-nestjs
+      - PMA_HOST=nestjs
     ports:
       - '8085:80'
     depends_on:
