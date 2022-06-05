@@ -1,4 +1,4 @@
-import {Exclude} from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 import {
   CreateDateColumn,
   Entity,
@@ -36,6 +36,34 @@ export class Order {
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
 
+  @Exclude()
   @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.order)
   orderProducts: OrderProduct[];
+
+  @Expose()
+  get products() {
+    if (this.orderProducts) {
+      return this.orderProducts
+        .filter((product) => !!product) // !!valor es similar a decir valor!=null y valor!=undefined
+        .map((product) => ({
+          ...product.product,
+          quantity: product.quantity,
+          orderProductId: product.id,
+        }));
+    }
+    return [];
+  }
+
+  @Expose()
+  get total() {
+    if (this.orderProducts) {
+      return this.orderProducts
+        .filter(product => !!product)
+        .reduce((total, product) => {
+          const totalProduct = product.product.price * product.quantity;
+          return total + totalProduct;
+        }, 0);
+    }
+    return 0;
+  }
 }
