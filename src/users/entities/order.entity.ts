@@ -29,6 +29,6 @@ export class Order {
   @ManyToOne(() => Customer, (customer) => customer.orders)
   customer: Customer;
 
-  @OneToMany(() => OrderProduct, (product) => product.order)
-  products: OrderProduct[];
+  @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.order)
+  orderProducts: OrderProduct[];
 }

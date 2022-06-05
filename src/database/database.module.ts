@@ -32,7 +32,7 @@ const API_KEY = '123456';
       provide: 'API_KEY',
       useValue: process.env.NODE_ENV === 'prod' ? API_KEY_PROD : API_KEY,
     },
-
+    /*
     {
       provide: 'PG',
       useFactory: (configService: ConfigType<typeof config>) => {
@@ -47,8 +47,8 @@ const API_KEY = '123456';
         return client;
       },
       inject: [config.KEY],
-    },
+    }, */
   ],
-  exports: ['API_KEY', 'PG', TypeOrmModule],
+  exports: ['API_KEY', TypeOrmModule],
 })
 export class DatabaseModule {}

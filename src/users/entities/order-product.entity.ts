@@ -31,6 +31,6 @@ export class OrderProduct {
   @ManyToOne(() => Product) // no hacemos la relacion vidireccional
   product: Product;
 
-  @ManyToOne(() => Order, (order) => order.products)
+  @ManyToOne(() => Order, (order) => order.orderProducts)
   order: Order;
 }

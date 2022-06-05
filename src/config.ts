@@ -2,11 +2,11 @@ import { registerAs } from '@nestjs/config';
 
 export default registerAs('config', () => {
   return {
-     database: {
+    database: {
       name: process.env.DATABASE_NAME,
       port: process.env.DATABASE_PORT,
     },
-/*
+    /*
     postgres: {
       dbHost: process.env.POSTGRES_DB_HOST,
       dbName: process.env.POSTGRES_DB,

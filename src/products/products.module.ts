@@ -22,6 +22,6 @@ import { CategoriesService } from './services/categories.service';
     CategoriesController,
   ],
   providers: [ProductsService, BrandsService, CategoriesService],
-  exports: [ProductsService],
+  exports: [ProductsService, TypeOrmModule],
 })
 export class ProductsModule {}
