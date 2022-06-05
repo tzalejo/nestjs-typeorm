@@ -1,3 +1,4 @@
+import {Exclude} from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -24,12 +25,14 @@ export class Customer {
   @Column({ type: 'varchar', length: 255 })
   phone: string;
 
+  @Exclude()
   @CreateDateColumn({
     name: 'create_at',
     type: 'timestamp',
   })
   createAt: Date;
 
+  @Exclude()
   @UpdateDateColumn({
     name: 'update_at',
     type: 'timestamp',

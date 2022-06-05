@@ -1,3 +1,4 @@
+import {Exclude} from 'class-transformer';
 import { Product } from 'src/products/entities/product.entity';
 import {
   Column,
@@ -19,12 +20,14 @@ export class OrderProduct {
   @Column({ type: 'int' })
   quantity: number;
 
+  @Exclude()
   @CreateDateColumn({
     name: 'create_at',
     type: 'timestamp',
   })
   createAt: Date;
 
+  @Exclude()
   @UpdateDateColumn({
     name: 'update_at',
     type: 'timestamp',

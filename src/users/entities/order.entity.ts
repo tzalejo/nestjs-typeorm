@@ -1,3 +1,4 @@
+import {Exclude} from 'class-transformer';
 import {
   CreateDateColumn,
   Entity,
@@ -17,12 +18,14 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Exclude()
   @CreateDateColumn({
     name: 'create_at',
     type: 'timestamp',
   })
   createAt: Date;
 
+  @Exclude()
   @UpdateDateColumn({
     name: 'update_at',
     type: 'timestamp',
