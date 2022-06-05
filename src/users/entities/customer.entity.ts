@@ -10,7 +10,7 @@ import {
 import { Order } from './order.entity';
 import { User } from './user.entity';
 
-@Entity()
+@Entity({ name: 'customers' })
 export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
@@ -25,11 +25,13 @@ export class Customer {
   phone: string;
 
   @CreateDateColumn({
+    name: 'create_at',
     type: 'timestamp',
   })
   createAt: Date;
 
   @UpdateDateColumn({
+    name: 'update_at',
     type: 'timestamp',
   })
   updateAt: Date;

@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -12,7 +13,7 @@ import {
 import { Brand } from './brand.entity';
 import { Category } from './category.entity';
 
-@Entity()
+@Entity({ name: 'products' })
 export class Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -33,16 +34,19 @@ export class Product {
   image: string;
 
   @CreateDateColumn({
+    name: 'create_at',
     type: 'timestamp',
   })
   createAt: Date;
 
   @UpdateDateColumn({
+    name: 'update_at',
     type: 'timestamp',
   })
   updateAt: Date;
 
   @ManyToOne(() => Brand, (brand) => brand.products)
+  @JoinColumn({ name: 'brand_id' })
   brand: Brand;
 
   @ManyToMany(() => Category, (category) => category.products)

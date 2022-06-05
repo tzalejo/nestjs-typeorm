@@ -9,7 +9,9 @@ import {
 
 import { Product } from './product.entity';
 
-@Entity()
+@Entity({
+  name: 'brands', // renombramos en la bd con este nombre
+})
 export class Brand {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,11 +23,13 @@ export class Brand {
   image: string;
 
   @CreateDateColumn({
+    name: 'create_at',
     type: 'timestamp',
   })
   createAt: Date;
 
   @UpdateDateColumn({
+    name: 'update_at',
     type: 'timestamp',
   })
   updateAt: Date;

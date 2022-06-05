@@ -1,9 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Between, FindConditions, LessThanOrEqual, MoreThanOrEqual, Repository } from 'typeorm';
+import {
+  Between,
+  FindConditions,
+  LessThanOrEqual,
+  MoreThanOrEqual,
+  Repository,
+} from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Product } from './../entities/product.entity';
-import { CreateProductDto, FilterProductsDto, UpdateProductDto } from '../dtos/products.dtos';
+import {
+  CreateProductDto,
+  FilterProductsDto,
+  UpdateProductDto,
+} from '../dtos/products.dtos';
 import { BrandsService } from './brand.service';
 
 import { Category } from '../entities/category.entity';

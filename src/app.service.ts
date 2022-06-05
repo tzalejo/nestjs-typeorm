@@ -6,8 +6,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  constructor() // @Inject('TASKS') private tasks: any[], // @Inject('PG') private clientPg: Client,
-  // @Inject(config.KEY) private configService: ConfigType<typeof config>,
+  constructor() // @Inject(config.KEY) private configService: ConfigType<typeof config>, // @Inject('TASKS') private tasks: any[], // @Inject('PG') private clientPg: Client,
   {}
 
   /* getHello(): string {

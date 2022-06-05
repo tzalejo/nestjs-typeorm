@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { Customer } from './customer.entity';
 
-@Entity()
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -24,16 +24,18 @@ export class User {
   role: string;
 
   @CreateDateColumn({
+    name: 'create_at',
     type: 'timestamp',
   })
   createAt: Date;
 
   @UpdateDateColumn({
+    name: 'update_at',
     type: 'timestamp',
   })
   updateAt: Date;
 
   @OneToOne(() => Customer, (customer) => customer.user)
-  @JoinColumn() // esto tiene que estar en un solo lado de la relacion(relacion uno a uno)
+  @JoinColumn({ name: 'customer_id' }) // esto tiene que estar en un solo lado de la relacion(relacion uno a uno)
   customer: Customer;
 }
